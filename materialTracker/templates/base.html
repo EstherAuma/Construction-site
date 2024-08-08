@@ -1,0 +1,32 @@
+{% load static %}
+{% load bootstrap5 %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Construction site</title>
+    <link rel="stylesheet" href="{% static 'main.css' %}">
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+</head>
+<body>
+    <div class="sidebar">
+        
+        <ul id="sidebarList">
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'workers' %}">Workers</a></li>
+                <li><a href="#">Attendance</a></li>
+                <li><a href="#">Materials</a></li>
+                <li><a href="#">Material usage</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+    </div>
+   
+</body>
+</html>
