@@ -24,7 +24,10 @@ body {
 .sidebar a {
     color: white;
     text-decoration: none;
+
 }
+ 
+
 .sidebar a {
     display: inline-block; 
     width: 100%; 

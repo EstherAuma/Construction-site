@@ -14,13 +14,11 @@
 <body>
     <div class="sidebar">
         
-        <ul id="sidebarList">
-            {% if user.is_authenticated %}
+        <ul>
                 <li><a href="{% url 'workers' %}">Workers</a></li>
-                <li><a href="#">Attendance</a></li>
+                <li><a href="{% url 'addworkers' %}">Add workers</a></li>
                 <li><a href="#">Materials</a></li>
                 <li><a href="#">Material usage</a></li>
-            {% endif %}
         </ul>
     </div>
     <div class="content">
