@@ -1,0 +1,5 @@
+# Ignore virtual environment
+newenv/
+
+# Ignore database files
+db.sqlite3
