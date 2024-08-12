@@ -33,33 +33,9 @@ body {
     text-align: left; 
 }
 
-.sidebar a:hover {
-    color: blue;
-    background-color: white;
-}
-
-.profile-picture { 
-    max-width: 100px; 
-    border-radius: 100%; 
-    margin: 20px auto; 
-    display: block;
-}
-
-.search-container input[type="text"] {
-    width: 190px; 
-    height: 30px; 
-    padding: 5px; 
-    font-size: 16px;
-}
-
 .container {
     max-width: 800px; 
     margin: 0 auto; 
-}
-
-
-.hover-row:hover {
-    background-color: #f0f0f0; 
 }
 
 
