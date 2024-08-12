@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import WorkerForm, MaterialForm
-from .models import Worker
+from .models import Worker, Material
 
 # Create your views here.
 
@@ -23,3 +23,7 @@ def add_materials(request):
         if form.is_valid():
             form.save()
     return render(request, "addmaterials.html", {"form": form})
+
+def materials(request):
+    materials = Material.objects.all()
+    return render(request, "materials.html", {"materials": materials})

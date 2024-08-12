@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Material name</th>
+                <th>Material quantity</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for material in materials %}
+                <tr>
+                    <td>{{ material.name }}</td>
+                    <td>{{ material.unit }}</td>
+                    
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</div>
+{% endblock %}
