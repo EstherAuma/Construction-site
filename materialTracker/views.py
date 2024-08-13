@@ -6,7 +6,7 @@ from .models import Worker, Material
 
 def workers(request):
     workers = Worker.objects.all()
-    return render(request, "workers.html", {"workers": workers})
+    return render(request, "pages/workers.html", {"workers": workers})
 
 def add_workers(request):
     form = WorkerForm(request.POST)
@@ -14,16 +14,15 @@ def add_workers(request):
         
         if form.is_valid():
             form.save()
-    return render(request, "addworkers.html", {"form": form})
+    return render(request, "pages/addworkers.html", {"form": form})
 
 def add_materials(request):
     form = MaterialForm(request.POST)
-    if request.method == "POST":
-        
+    if request.method == "POST":   
         if form.is_valid():
             form.save()
-    return render(request, "addmaterials.html", {"form": form})
+    return render(request, "pages/addmaterials.html", {"rice": form})
 
 def materials(request):
     materials = Material.objects.all()
-    return render(request, "materials.html", {"materials": materials})
+    return render(request, "pages/materials.html", {"cars": materials})

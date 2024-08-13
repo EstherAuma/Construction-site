@@ -1,6 +1,8 @@
-{% extends 'base.html' %}
+{% extends 'pages/base.html' %}
 {% block content %}
+<h3>ALL MATERIALS</h3>
 <div class="container">
+    
     <table class="table">
         <thead>
             <tr>
@@ -10,7 +12,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for material in materials %}
+            {% for material in cars %}
                 <tr>
                     <td>{{ material.name }}</td>
                     <td>{{ material.unit }}</td>

@@ -1,45 +1,29 @@
-body {
-    display: flex;
-    
-   }
-.sidebar {
-    width: 290px;
-    background-color: #2c6e49;
-    padding: 10px;
-    height: 200vh;
-    overflow-y: hidden; 
-}
-.content {
-    flex-grow: 1;
+.worker-form{
+    margin-top: 20px;
+    margin-bottom: 20px;
     padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 93%;
+    margin-left: 50px;
 }
 
-.sidebar ul {
-    list-style-type: none;
-    padding: 0;
-}
-.sidebar li {
-    margin-bottom: 10px;
-}
-.sidebar a {
-    color: white;
-    text-decoration: none;
-
-}
- 
-
-.sidebar a {
-    display: inline-block; 
-    width: 100%; 
-    padding: 5px 50px; 
-    box-sizing: border-box; 
-    text-align: left; 
-}
-.container {
-    max-width: 800px; 
-    margin: 0 auto; 
+.add-material-form{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 93%;
+    margin-left: 50px;
 }
 
+.container{
+    margin-top: 50px;
+}
 
-
-
+h3{
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-top: 30px;
+}
