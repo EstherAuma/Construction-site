@@ -59,3 +59,10 @@ def materials(request):
 def worker_detail(request, pk):
     worker = Worker.objects.get(pk=pk)
     return render(request, "pages/worker-details.html", {"worker": worker})
+def edit_workers(request, pk):
+    worker = Worker.objects.get(pk=pk)
+    form = WorkerForm(request.POST or None, instance=worker)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+    return render(request, "pages/edit-worker.html", {"form": form})

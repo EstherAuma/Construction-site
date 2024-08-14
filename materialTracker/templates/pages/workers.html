@@ -11,6 +11,7 @@
                 <th>Phone number</th>
                 <th>Email</th>
                 <th>Details</th>
+                <th>Update</th>
                 
             </tr>
         </thead>
@@ -25,7 +26,9 @@
                         <a href="{% url 'worker-detail' worker.id %}" class="btn btn-primary">Details</a>
                     </td>
                     
-                    
+                    <td>
+                        <a href="{% url 'editworkers' worker.id %}" class="btn btn-primary">Edit</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
