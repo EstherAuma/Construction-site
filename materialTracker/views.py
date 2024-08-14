@@ -43,6 +43,7 @@ def add_workers(request):
         
         if form.is_valid():
             form.save()
+            return redirect('/')
     return render(request, "pages/addworkers.html", {"form": form})
 
 def add_materials(request):
@@ -50,6 +51,7 @@ def add_materials(request):
     if request.method == "POST":   
         if form.is_valid():
             form.save()
+            return redirect('/materials')
     return render(request, "pages/addmaterials.html", {"form": form})
 
 def materials(request):
@@ -85,3 +87,12 @@ def delete_worker(request, pk):
     worker = Worker.objects.get(pk=pk)
     worker.delete()
     return redirect('/')
+
+def delete_material(request, pk):
+    material = Material.objects.get(pk=pk)
+    material.delete()
+    return redirect('/materials')
+
+def material_details(request, pk):
+    material = Material.objects.get(pk=pk)
+    return render(request, "pages/material-details.html", {"material": material})
