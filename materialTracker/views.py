@@ -54,3 +54,8 @@ def add_materials(request):
 def materials(request):
     materials = Material.objects.all()
     return render(request, "pages/materials.html", {"cars": materials})
+
+
+def worker_detail(request, pk):
+    worker = Worker.objects.get(pk=pk)
+    return render(request, "pages/worker-details.html", {"worker": worker})
