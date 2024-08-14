@@ -3,7 +3,7 @@ from . import views
 from .views import WorkerListAPIView, WorkerDetailAPIView
 
 urlpatterns = [
-    path("", views.workers, name="workers"),
+    path("", views.workers, name="worker"),
     path("addworkers/", views.add_workers, name="addworkers"),
     path("addmaterials/", views.add_materials, name="addmaterials"),
     path("materials/", views.materials, name="materials"),
