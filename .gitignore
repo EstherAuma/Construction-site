@@ -3,3 +3,6 @@ newenv/
 
 # Ignore database files
 db.sqlite3
+
+# Ignore compiled Python files
+*.pyc

@@ -1,0 +1,15 @@
+{% extends 'pages/base.html' %}
+{% block content %}
+
+<h3>MATERIAL DETAILS</h3>
+
+    <div class="card" style="width: 18rem;">
+        <div class="card-body">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item"><strong>Name:</strong> {{ material.name }}</li>
+                <li class="list-group-item"><strong>Last Name:</strong> {{ material.unit }}</li>
+            </ul>
+            <a href="{% url 'materials' %}" class="btn btn-primary mt-3">Back</a>
+        </div>
+    </div>
+{% endblock %}
