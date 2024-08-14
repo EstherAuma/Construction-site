@@ -80,3 +80,8 @@ def edit_materials(request, pk):
             form.save()
             return redirect('/materials')
     return render(request, "pages/edit-material.html", {"form": form})
+
+def delete_worker(request, pk):
+    worker = Worker.objects.get(pk=pk)
+    worker.delete()
+    return redirect('/')
