@@ -50,7 +50,7 @@ def add_materials(request):
     if request.method == "POST":   
         if form.is_valid():
             form.save()
-    return render(request, "pages/addmaterials.html", {"rice": form})
+    return render(request, "pages/addmaterials.html", {"form": form})
 
 def materials(request):
     materials = Material.objects.all()
@@ -68,5 +68,15 @@ def edit_workers(request, pk):
     if request.method == "POST":
         if form.is_valid():
             form.save()
-            return redirect('/', kwargs={'pk': pk})
+            return redirect('/')
     return render(request, "pages/edit-worker.html", {"form": form})
+
+
+def edit_materials(request, pk):
+    material = Material.objects.get(pk=pk)
+    form = MaterialForm(request.POST or None, instance=material)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect('/materials')
+    return render(request, "pages/edit-material.html", {"form": form})

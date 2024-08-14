@@ -9,6 +9,7 @@ urlpatterns = [
     path("materials/", views.materials, name="materials"),
     path("workers/<int:pk>/", views.worker_detail, name="worker-detail"),
     path("editworkers/<int:pk>/", views.edit_workers, name="editworkers"),
+    path("editmaterials/<int:pk>/", views.edit_materials, name="edit-materials"),
     
     # API URLS
     path("api/workers/", WorkerListAPIView.as_view(), name="workers"),

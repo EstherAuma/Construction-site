@@ -8,6 +8,7 @@
             <tr>
                 <th>Material name</th>
                 <th>Material quantity</th>
+                <th>Update</th>
                 
             </tr>
         </thead>
@@ -16,7 +17,9 @@
                 <tr>
                     <td>{{ material.name }}</td>
                     <td>{{ material.unit }}</td>
-                    
+                    <td>
+                        <a href="{% url 'edit-materials' material.id %}" class="btn btn-primary">Edit</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>
