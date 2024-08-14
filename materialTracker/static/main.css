@@ -20,6 +20,9 @@
 
 .container{
     margin-top: 50px;
+    align-items: center;
+    margin-left: 30px;
+    background-color: beige;
 }
 
 h3{
@@ -27,3 +30,56 @@ h3{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     margin-top: 30px;
 }
+
+
+.sidebar {
+    width: 290px;
+    background-color: #1f7a8c;
+    padding: 10px;
+    height: 200vh;
+    overflow-y: hidden; 
+    position: fixed;
+}
+.content {
+    
+    padding: 20px;
+    margin-left: 300px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+.sidebar li {
+    margin-bottom: 10px;
+}
+.sidebar a {
+    color: white;
+    text-decoration: none;
+}
+.sidebar a {
+    display: inline-block; 
+    width: 100%; 
+    padding: 5px 50px; 
+    box-sizing: border-box; 
+    text-align: left; 
+}
+
+.sidebar a:hover {
+    color: #000;
+    background-color: white;
+}
+
+.card{
+    margin-top: 40px;
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    max-width: 93%;
+    margin-left: 50px;
+    align-items: center;
+    margin-left: 300px;
+}
+
+

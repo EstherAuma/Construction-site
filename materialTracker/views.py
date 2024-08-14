@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .forms import WorkerForm, MaterialForm
 from .models import Worker, Material
 
+# For API
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .serializers import WorkerSerializer
@@ -9,9 +10,9 @@ from rest_framework import status
 from django.http import Http404
 from rest_framework import status
 
-# Create your views here.
 
 
+# API Views
 class WorkerListAPIView(APIView):
     def get(self, request):
         workers = Worker.objects.all()
@@ -29,6 +30,8 @@ class WorkerDetailAPIView(APIView):
         serializer = WorkerSerializer(worker)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
+
+# Template Views
 def workers(request):
     workers = Worker.objects.all()
     return render(request, "pages/workers.html", {"workers": workers})
@@ -51,3 +54,8 @@ def add_materials(request):
 def materials(request):
     materials = Material.objects.all()
     return render(request, "pages/materials.html", {"cars": materials})
+
+
+def worker_detail(request, pk):
+    worker = Worker.objects.get(pk=pk)
+    return render(request, "pages/worker-details.html", {"worker": worker})
