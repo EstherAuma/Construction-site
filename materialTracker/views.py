@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_list_or_404
 from .forms import WorkerForm, MaterialForm
 from .models import Worker, Material
 
@@ -58,7 +58,7 @@ def materials(request):
 
 
 def worker_detail(request, pk):
-    worker = Worker.objects.get(pk=pk)
+    worker = get_list_or_404(Worker, pk=pk)
     return render(request, "pages/worker-details.html", {"worker": worker})
 
 
