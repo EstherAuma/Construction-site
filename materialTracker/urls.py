@@ -3,6 +3,7 @@ from . import views
 from .views import WorkerListAPIView, WorkerDetailAPIView
 
 urlpatterns = [
+    # Template URLS
     path("", views.workers, name="worker"),
     path("addworkers/", views.add_workers, name="addworkers"),
     path("addmaterials/", views.add_materials, name="addmaterials"),
@@ -10,6 +11,9 @@ urlpatterns = [
     path("workers/<int:pk>/", views.worker_detail, name="worker-detail"),
     path("editworkers/<int:pk>/", views.edit_workers, name="editworkers"),
     path("editmaterials/<int:pk>/", views.edit_materials, name="edit-materials"),
+    path('delete/worker/<int:pk>/', views.delete_worker, name='delete-worker'),
+    path('delete/material/<int:pk>/', views.delete_material, name='delete-material'),
+    path("materials/<int:pk>/", views.material_details, name="material-details"),
     
     # API URLS
     path("api/workers/", WorkerListAPIView.as_view(), name="workers"),
