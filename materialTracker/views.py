@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect,get_list_or_404
+from django.shortcuts import render,redirect,get_object_or_404
 from .forms import WorkerForm, MaterialForm
 from .models import Worker, Material
 
@@ -60,7 +60,7 @@ def materials(request):
 
 
 def worker_detail(request, pk):
-    worker = get_list_or_404(Worker, pk=pk)
+    worker = get_object_or_404(Worker, pk=pk)
     return render(request, "pages/worker-details.html", {"worker": worker})
 
 
@@ -94,5 +94,5 @@ def delete_material(request, pk):
     return redirect('/materials')
 
 def material_details(request, pk):
-    material = Material.objects.get(pk=pk)
+    material = get_object_or_404(Material, pk=pk)
     return render(request, "pages/material-details.html", {"material": material})
