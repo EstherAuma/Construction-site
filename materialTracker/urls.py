@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import WorkerListAPIView, WorkerDetailAPIView
+from .views import WorkerListAPIView, WorkerDetailAPIView, WorkerUpdateAPIView, WorkerCreateAPIView
 
 urlpatterns = [
     # Template URLS
@@ -17,5 +17,8 @@ urlpatterns = [
     
     # API URLS
     path("api/workers/", WorkerListAPIView.as_view(), name="workers"),
-    path("api/workers/<int:pk>/", WorkerDetailAPIView.as_view(), name="workers")
+    path("api/workers/<int:pk>/", WorkerDetailAPIView.as_view(), name="workers"),
+    path("api/workers/<int:pk>/update/",WorkerUpdateAPIView.as_view(), name="worker-update"),
+    path("api/workers/create/", WorkerCreateAPIView.as_view(), name="worker-create"),
 ]
+
