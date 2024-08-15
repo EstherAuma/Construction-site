@@ -1,8 +1,7 @@
 {% extends 'pages/base.html' %}
 {% block content %}
 <h3>ADD WORKER</h3>
-<div class="container">
-    
+ 
     <form method="POST" action="" class="worker-form">
         {% csrf_token %}
         
@@ -36,6 +35,6 @@
         <br>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-</div>
+
 
 {% endblock %}

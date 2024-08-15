@@ -1,6 +1,10 @@
 from django.db import models
+from django.core.exceptions import ValidationError
 
 from django.utils import timezone
+def validate_not_future_date(value):
+    if value > timezone.now().date():
+        raise ValidationError('Date cannot be in the future.')
 
 # Create your models here.
 
@@ -15,7 +19,7 @@ class Worker(models.Model):
     
 class Attendance(models.Model):
     worker = models.ForeignKey(Worker, on_delete=models.CASCADE)
-    date = models.DateField(default=timezone.now)
+    date = models.DateField(default=timezone.now, validators=[validate_not_future_date])
     time_in = models.TimeField(default=timezone.now)
     time_out = models.TimeField(default=timezone.now)
     daily_rate= models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False)
@@ -34,7 +38,7 @@ class Material(models.Model):
     name = models.CharField(max_length=50, null=False, blank=False)
     unit = models.CharField(max_length=10, choices=UNIT_CHOICES, default='kg')
     quantity = models.PositiveIntegerField(default=0)
-    date_purchased = models.DateField(default=timezone.now)
+    date_purchased = models.DateField(default=timezone.now, validators=[validate_not_future_date])
 
     def __str__(self):
         return f"{self.name} {self.date_purchased}"
@@ -42,7 +46,7 @@ class Material(models.Model):
 class MaterialUsage(models.Model):
     material = models.ForeignKey(Material, on_delete=models.CASCADE)
     quantity = models.CharField(max_length=10, null=False, blank=False)
-    date_used = models.DateField(default=timezone.now)
+    date_used = models.DateField(default=timezone.now, validators=[validate_not_future_date])
     price_per_unit = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False)
 
     def __str__(self):

@@ -108,11 +108,14 @@ def add_workers(request):
     return render(request, "pages/addworkers.html", {"form": form})
 
 def add_materials(request):
-    form = MaterialForm(request.POST)
-    if request.method == "POST":   
+    if request.method == "POST":
+        form = MaterialForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect('/materials')
+    else:
+        form = MaterialForm()  # Only create a new form when the method is not POST
+
     return render(request, "pages/addmaterials.html", {"form": form})
 
 def materials(request):
