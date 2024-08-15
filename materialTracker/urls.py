@@ -14,6 +14,7 @@ urlpatterns = [
     path('delete/worker/<int:pk>/', views.delete_worker, name='delete-worker'),
     path('delete/material/<int:pk>/', views.delete_material, name='delete-material'),
     path("materials/<int:pk>/", views.material_details, name="material-details"),
+    path("attendance/", views.add_attendance, name="attendance"),
     
     # API URLS
     path("api/workers/", WorkerListAPIView.as_view(), name="workers"),

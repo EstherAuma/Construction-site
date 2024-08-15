@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
-from .forms import WorkerForm, MaterialForm
+from .forms import WorkerForm, MaterialForm, AttendanceForm
 from .models import Worker, Material
 
 
@@ -160,3 +160,14 @@ def delete_material(request, pk):
 def material_details(request, pk):
     material = get_object_or_404(Material, pk=pk)
     return render(request, "pages/material-details.html", {"material": material})
+
+def add_attendance(request):
+    if request.method == "POST":
+        form = AttendanceForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('/')  # Redirect to the list of attendances or any other relevant page
+    else:
+        form = AttendanceForm()
+    
+    return render(request, 'pages/attendance.html', {'form': form})

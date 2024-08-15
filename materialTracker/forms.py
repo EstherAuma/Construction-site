@@ -11,3 +11,8 @@ class MaterialForm(forms.ModelForm):
     class Meta:
         model = Material
         fields = ['name', 'quantity','unit',  'date_purchased']
+
+class AttendanceForm(forms.ModelForm):
+    class Meta:
+        model = Attendance
+        fields = ['worker', 'date', 'time_in', 'time_out', 'daily_rate']
