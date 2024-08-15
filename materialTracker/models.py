@@ -24,8 +24,16 @@ class Attendance(models.Model):
         return f"{self.worker.first_name} {self.worker.last_name} {self.date}"
     
 class Material(models.Model):
+    UNIT_CHOICES = [
+        ('m', 'Meters'),
+        ('kg', 'Kilograms'),
+        ('t', 'Tons'),
+        ('L', 'Liters'),
+        ('pcs', 'Pieces'),
+    ]
     name = models.CharField(max_length=50, null=False, blank=False)
-    unit = models.CharField(max_length=50, null=False, blank=False)
+    unit = models.CharField(max_length=10, choices=UNIT_CHOICES, default='kg')
+    quantity = models.PositiveIntegerField(default=0)
     date_purchased = models.DateField(default=timezone.now)
 
     def __str__(self):

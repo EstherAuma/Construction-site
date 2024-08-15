@@ -10,4 +10,4 @@ class WorkerForm(forms.ModelForm):
 class MaterialForm(forms.ModelForm):
     class Meta:
         model = Material
-        fields = ['name', 'unit']
+        fields = ['name', 'quantity','unit',  'date_purchased']
