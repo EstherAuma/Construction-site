@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .forms import WorkerForm, MaterialForm, AttendanceForm
-from .models import Worker, Material
+from .models import Worker, Material, Attendance
 
 
 # For API
@@ -166,8 +166,12 @@ def add_attendance(request):
         form = AttendanceForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('/')  # Redirect to the list of attendances or any other relevant page
+            return redirect('attendance-list')  
     else:
         form = AttendanceForm()
     
     return render(request, 'pages/attendance.html', {'form': form})
+
+def attendance_list(request):
+    attendances = Attendance.objects.all()
+    return render(request, 'pages/attendance-list.html', {'attendances': attendances})
