@@ -114,7 +114,7 @@ def add_materials(request):
             form.save()
             return redirect('/materials')
     else:
-        form = MaterialForm()  # Only create a new form when the method is not POST
+        form = MaterialForm()  
 
     return render(request, "pages/addmaterials.html", {"form": form})
 
