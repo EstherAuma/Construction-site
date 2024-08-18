@@ -41,7 +41,7 @@ class Material(models.Model):
     date_purchased = models.DateField(default=timezone.now, validators=[validate_not_future_date])
 
     def __str__(self):
-        return f"{self.name} {self.date_purchased}"
+        return f"{self.name}"
     
 class MaterialUsage(models.Model):
     material = models.ForeignKey(Material, on_delete=models.CASCADE)
@@ -50,7 +50,7 @@ class MaterialUsage(models.Model):
     price_per_unit = models.DecimalField(max_digits=10, decimal_places=2, null=False, blank=False)
 
     def __str__(self):
-        return f"{self.material.name}  {self.date_used}"
+        return f"{self.material.name}"
     
     @property
     def total_price(self):

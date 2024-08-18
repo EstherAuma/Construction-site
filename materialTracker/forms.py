@@ -16,3 +16,11 @@ class AttendanceForm(forms.ModelForm):
     class Meta:
         model = Attendance
         fields = ['worker', 'date', 'time_in', 'time_out', 'daily_rate']
+
+class MaterialUsageForm(forms.ModelForm):
+    class Meta:
+        model = MaterialUsage
+        fields = ['material', 'quantity', 'date_used', 'price_per_unit']
+        widgets = {
+            'material': forms.Select(attrs={'class': 'form-select', 'aria-label': 'Default select example'}),
+        }
