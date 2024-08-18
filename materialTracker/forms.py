@@ -11,6 +11,10 @@ class MaterialForm(forms.ModelForm):
     class Meta:
         model = Material
         fields = ['name', 'quantity','unit',  'date_purchased']
+        widgets = {
+            'date_purchased': forms.DateInput(attrs={'type': 'date', 'class': 'form-control'}),
+            'unit': forms.Select(choices=Material.UNIT_CHOICES, attrs={'class': 'form-control'})
+        }
 
 class AttendanceForm(forms.ModelForm):
     class Meta:

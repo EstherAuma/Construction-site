@@ -140,14 +140,22 @@ def edit_workers(request, pk):
 
 
 def edit_materials(request, pk):
-    material = Material.objects.get(pk=pk)
+    # Fetch the material object or return a 404 if not found
+    material = get_object_or_404(Material, pk=pk)
+    
+    # Initialize the form with POST data or the current instance
     form = MaterialForm(request.POST or None, instance=material)
+    
     if request.method == "POST":
+        print("Request Method: POST")  # Debugging line
         if form.is_valid():
+            print("Form is valid.")  # Debugging line
             form.save()
-            return redirect('/materials')
+            return redirect('/materials')  # Adjust the redirect URL if necessary
+        else:
+            print("Form errors:", form.errors)  # Print form errors for debugging
+    
     return render(request, "pages/edit-material.html", {"form": form})
-
 def delete_worker(request, pk):
     worker = Worker.objects.get(pk=pk)
     worker.delete()
