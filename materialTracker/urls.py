@@ -17,6 +17,7 @@ urlpatterns = [
     path("attendance/", views.add_attendance, name="attendance"),
     path("attendance-list/", views.attendance_list, name="attendance-list"),
     path("material-usage/", views.material_usage, name="material-usage"),
+    path("material-usage-list/", views.material_usage_list, name="material-usage-list"),
     
     # API URLS
     path("api/workers/", WorkerListAPIView.as_view(), name="workers"),

@@ -1,6 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from .forms import WorkerForm, MaterialForm, AttendanceForm, MaterialUsageForm
-from .models import Worker, Material, Attendance
+from .models import Worker, Material, Attendance, MaterialUsage
+from decimal import Decimal
 
 
 # For API
@@ -180,9 +181,16 @@ def material_usage(request):
     if request.method == "POST":
         form = MaterialUsageForm(request.POST)
         if form.is_valid():
-            form.save()
-            return redirect('/')  
+            # Save the form instance
+            material_usage = form.save()
+            # After saving, you can redirect or handle other logic
+            return redirect('/')
     else:
         form = MaterialUsageForm()
     
     return render(request, 'pages/material-usage.html', {'form': form})
+
+
+def material_usage_list(request):
+    material_usages = MaterialUsage.objects.all()
+    return render(request, 'pages/material-usage-list.html', {'usage': material_usages})

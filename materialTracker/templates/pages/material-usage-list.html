@@ -1,0 +1,25 @@
+{% extends 'pages/base.html' %}
+{% block content %}
+    <h3>MATERIALS USED</h3>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Material</th>
+                <th>Quantity</th>
+                <th>Date Used</th>
+                <th>Price Per Unit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for material in usage %}
+                <tr>
+                    <td>{{ material.material }}</td>
+                    <td>{{ material.quantity }}</td>
+                    <td>{{ material.date_used }}</td>
+                    <td>{{ material.price_per_unit }}</td>
+                    
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
