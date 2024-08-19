@@ -3,11 +3,13 @@
 
 <h3>MATERIAL DETAILS</h3>
 
-    <div class="card" style="width: 18rem;">
+    <div class="card" style="width: 30rem;">
         <div class="card-body">
             <ul class="list-group list-group-flush">
                 <li class="list-group-item"><strong>Name:</strong> {{ material.name }}</li>
-                <li class="list-group-item"><strong>Last Name:</strong> {{ material.unit }}</li>
+                <li class="list-group-item"><strong>Quantity:</strong> {{ material.quantity }} {{ material.unit }}</li>
+                <li class="list-group-item"><strong>Date purchased:</strong>{{ material.date_purchased }}</li>
+
             </ul>
             <a href="{% url 'materials' %}" class="btn btn-primary mt-3">Back</a>
         </div>
