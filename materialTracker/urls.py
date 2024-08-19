@@ -4,7 +4,8 @@ from .views import WorkerListAPIView, WorkerDetailAPIView, WorkerUpdateAPIView, 
 
 urlpatterns = [
     # Template URLS
-    path("", views.workers, name="worker"),
+    path("", views.index, name="index"),
+    path("worker/", views.workers, name="worker"),
     path("addworkers/", views.add_workers, name="addworkers"),
     path("addmaterials/", views.add_materials, name="addmaterials"),
     path("materials/", views.materials, name="materials"),
