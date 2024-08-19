@@ -8,6 +8,7 @@
                 <th>Date</th>
                 <th>Time In</th>
                 <th>Time Out</th>
+                <th>Update</th>
             </tr>
         </thead>
         <tbody>
@@ -17,6 +18,9 @@
                 <td>{{ attendance.date }}</td>
                 <td>{{ attendance.time_in }}</td>
                 <td>{{ attendance.time_out }}</td>
+                <td>
+                    <a href="{% url 'edit-attendance' attendance.id %}" class="btn btn-primary">Edit</a>
+                </td>
             </tr>
             {% endfor %}
         </tbody>

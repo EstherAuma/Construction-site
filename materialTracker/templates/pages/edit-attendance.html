@@ -1,9 +1,10 @@
 {% extends 'pages/base.html' %}
 {% block content %}
-<h3>ADD ATTENDANCE</h3>
+<h3>EDIT ATTENDANCE</h3>
 
 <form method="POST" action="" class="add-material-form">
     {% csrf_token %}
+    
     {% if form.errors %}
         <div class="alert alert-danger">
             <ul>
@@ -17,9 +18,9 @@
     {% endif %}
     
     <div class="form-group">
-        <label for="{{ form.worker.id_for_label }}">Name</label>
-        <select name="{{ form.worker.name }}" id="{{ form.worker.id_for_label }}" class="form-select" aria-label="Select worker" required="True">
-            <option value="" selected>Select a worker</option>
+        <label for="{{ form.worker.id_for_label }}">Worker</label>
+        <select name="{{ form.worker.name }}" id="{{ form.worker.id_for_label }}" class="form-select" aria-label="Select worker" required>
+            <option value="" {% if not form.worker.value %}selected{% endif %}>Select a worker</option>
             {% for worker in form.worker.field.queryset %}
                 <option value="{{ worker.id }}" {% if worker.id == form.worker.value %}selected{% endif %}>
                     {{ worker }}
@@ -54,7 +55,8 @@
     
     <br>
     
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a href="{% url 'attendance-list' %}" class="btn btn-secondary">Cancel</a>
 </form>
 
 {% endblock %}

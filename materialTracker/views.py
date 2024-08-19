@@ -205,3 +205,12 @@ def material_usage_list(request):
 def index(request):
     return render(request, 'pages/index.html')
 
+def edit_attendance(request, pk):
+    attendance = Attendance.objects.get(pk=pk)
+    form = AttendanceForm(request.POST or None, instance=attendance)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect('attendance-list')
+    return render(request, "pages/edit-attendance.html", {"form": form})
+

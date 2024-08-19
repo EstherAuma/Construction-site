@@ -1,6 +1,6 @@
 {% extends 'pages/base.html' %}
 {% block content %}
-    <h1>Materials Used</h1>
+    <h3>MATERIALS USED</h3>
     <table class="table">
         <thead>
             <tr>
@@ -17,8 +17,8 @@
                     <td>{{ material.material }}</td>
                     <td>{{ material.quantity }}</td>
                     <td>{{ material.date_used }}</td>
-                    <td>{{ material.price_per_unit }}</td>
-                    <td>{{ material.total_price }}</td>
+                    <td>UGX{{ material.price_per_unit }}</td>
+                    <td>UGX{{ material.total_price }}</td>
                 </tr>
             {% endfor %}
         </tbody>
