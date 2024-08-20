@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views
-from .views import WorkerListAPIView, WorkerDetailAPIView, WorkerUpdateAPIView, WorkerCreateAPIView, UserRegistrationAPIView
+from .views import WorkerListAPIView, WorkerDetailAPIView, WorkerUpdateAPIView, WorkerCreateAPIView, WorkerRegistrationAPIView
 
 urlpatterns = [
     # Template URLS
@@ -26,6 +26,6 @@ urlpatterns = [
     path("api/workers/<int:pk>/", WorkerDetailAPIView.as_view(), name="workers"),
     path("api/workers/<int:pk>/update/",WorkerUpdateAPIView.as_view(), name="worker-update"),
     path("api/workers/create/", WorkerCreateAPIView.as_view(), name="worker-create"),
-    path('api/register/', UserRegistrationAPIView.as_view(), name='user-register'),
+    path('api/register/', WorkerRegistrationAPIView.as_view(), name='user-register'),
 ]
 
