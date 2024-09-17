@@ -1,6 +1,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from decimal import Decimal
+import uuid
 
 from django.utils import timezone
 def validate_not_future_date(value):
@@ -14,9 +15,21 @@ class Worker(models.Model):
     last_name = models.CharField(max_length=50, null=False, blank=False)
     phone_number = models.CharField(max_length=20, null=False, blank=False,unique=True)
     email = models.EmailField(max_length=50, null=False, blank=False,unique=True)
+    password = models.CharField(max_length=128, null=False, blank=False,default='password')
 
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
+    
+    def is_authenticated(self):
+        return True
+    
+class WorkerToken(models.Model):
+    worker = models.OneToOneField(Worker, on_delete=models.CASCADE, related_name='auth_token')
+    key = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return str(self.key)
     
 class Attendance(models.Model):
     worker = models.ForeignKey(Worker, on_delete=models.CASCADE)
