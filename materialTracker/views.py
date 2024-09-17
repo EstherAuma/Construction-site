@@ -14,10 +14,39 @@ from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny
 
+from rest_framework.authentication import BaseAuthentication
+from rest_framework.exceptions import AuthenticationFailed
+from .models import WorkerToken
+from rest_framework.permissions import IsAuthenticated
+
+
+
 
 
 # API Views
+
+class WorkerTokenAuthentication(BaseAuthentication):
+    def authenticate(self, request):
+        auth_header = request.headers.get('Authorization')
+
+        if not auth_header:
+            return None
+
+        try:
+            token_key = auth_header.split(' ')[1]
+        except IndexError:
+            raise AuthenticationFailed('Invalid token header. No token provided.')
+
+        try:
+            token = WorkerToken.objects.get(key=token_key)
+        except WorkerToken.DoesNotExist:
+            raise AuthenticationFailed('Invalid token.')
+
+        return (token.worker, None)
+    
 class WorkerListAPIView(APIView):
+    authentication_classes = [WorkerTokenAuthentication]
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         workers = Worker.objects.all()
         serializer = WorkerSerializer(workers, many=True)

@@ -20,6 +20,9 @@ class Worker(models.Model):
     def __str__(self):
         return f"{self.first_name} {self.last_name}"
     
+    def is_authenticated(self):
+        return True
+    
 class WorkerToken(models.Model):
     worker = models.OneToOneField(Worker, on_delete=models.CASCADE, related_name='auth_token')
     key = models.UUIDField(default=uuid.uuid4, editable=False, unique=True)
