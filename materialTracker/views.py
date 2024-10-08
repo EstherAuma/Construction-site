@@ -3,6 +3,9 @@ from .forms import WorkerForm, MaterialForm, AttendanceForm, MaterialUsageForm
 from .models import Worker, Material, Attendance, MaterialUsage, WorkerToken
 from decimal import Decimal
 
+from django.http import JsonResponse
+from django.http import HttpResponse
+from .services import StrapiAPI
 
 # For API
 from rest_framework.views import APIView
@@ -18,9 +21,6 @@ from rest_framework.authentication import BaseAuthentication
 from rest_framework.exceptions import AuthenticationFailed
 from .models import WorkerToken
 from rest_framework.permissions import IsAuthenticated
-
-
-
 
 
 # API Views
@@ -246,3 +246,12 @@ def edit_attendance(request, pk):
             return redirect('attendance-list')
     return render(request, "pages/edit-attendance.html", {"form": form})
 
+
+def fetch_content_view(request):
+    strapi = StrapiAPI()
+    content_data = strapi.get_content()  
+
+    if content_data:
+        return JsonResponse({ "data": content_data})
+    else:
+        return JsonResponse({"status": "Failed", "message": "Error fetching data"}, status=500)
