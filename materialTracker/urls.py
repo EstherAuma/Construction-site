@@ -5,6 +5,7 @@ from .views import WorkerListAPIView, WorkerDetailAPIView, WorkerUpdateAPIView, 
 urlpatterns = [
     # Template URLS
     path("", views.index, name="index"),
+    path('content/', views.fetch_content_view, name='content'),
     path("worker/", views.workers, name="worker"),
     path("addworkers/", views.add_workers, name="addworkers"),
     path("addmaterials/", views.add_materials, name="addmaterials"),
@@ -20,6 +21,7 @@ urlpatterns = [
     path("material-usage/", views.material_usage, name="material-usage"),
     path("material-usage-list/", views.material_usage_list, name="material-usage-list"),
     path("edit-attendance/<int:pk>/", views.edit_attendance, name="edit-attendance"),
+    
     
     # API URLS
     path("api/workers/", WorkerListAPIView.as_view(), name="workers"),

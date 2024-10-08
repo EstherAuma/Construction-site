@@ -79,4 +79,8 @@ class MaterialUsage(models.Model):
             material.quantity -= self.quantity
             material.save()
         super().save(*args, **kwargs)
-
+        
+class AggregatedContent(models.Model):
+    data = models.JSONField(null=False)
+    def __str__(self):
+        return str(self.id)
