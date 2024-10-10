@@ -31,38 +31,34 @@ class StrapiAPI:
                         "pageId": item.get("page_id"),
                         "pageTitle": item.get("page_title"),
                         "lastUpdated": item.get("updatedAt"),
-                        
-                        "customType": custom_type,
-                        "pageContent": {
-                            "list": []
-                        }
+                        "previewTitle": item.get("preview_title"),
+                            "formQuestions": [], 
+                            "additionalText": [] 
                     }
 
                     for component in item.get("dynamic_zone", []):
-                        component_data = {
-                            "key": component.get("Key"),
-                            "label": component.get("Label"),
-                            "options": component.get("Options"),
-                            "category": component.get("Category"),
-                            "helpText": component.get("HelpText"),
-                            "required": component.get("Required"),
-                            "placeholder": component.get("Placeholder"),
-                            "component": component.get("__component"),
-                            "questionType": component.get("QuestionType"),
-                            "displayQuestion": component.get("DisplayQuestion"),
-                            "optionTranslations": component.get("OptionTranslations"),
-                        }
-
-                        content_item["pageContent"]["list"].append(component_data)
+                        
+                        if component.get("QuestionType"):  
+                            component_data = {
+                                "key": component.get("Key"),
+                                "label": component.get("Label"),
+                                "options": component.get("Options") or [],
+                                "category": component.get("Category"),
+                                "helpText": component.get("HelpText"),
+                                "required": component.get("Required"),
+                                "placeholder": component.get("Placeholder"),
+                                "questionType": component.get("QuestionType"),
+                                "displayQuestion": component.get("DisplayQuestion"),
+                            }
+                            content_item["formQuestions"].append(component_data)
 
                         if "repeatable_zone" in component:
                             for repeatable_item in component["repeatable_zone"]:
                                 repeatable_data = {
                                     "key": repeatable_item.get('key'),
                                     "value": repeatable_item.get('value'),
-                                    "id": repeatable_item.get("id")
                                 }
-                                content_item["pageContent"]["list"].append(repeatable_data)
+                                content_item["additionalText"].append(repeatable_data)
 
                     locale_content[locale][item.get("page_id")] = content_item
 
