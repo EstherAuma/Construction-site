@@ -17,14 +17,17 @@ class StrapiAPI:
             data = response.json()
             content = data.get('data', [])
             formatted_data = []
-            locale_content = {}  
+            locale_content = {}
+            menu = {} 
 
             for item in content:
                 custom_type = item.get('custom_type')
                 locale = item.get('locale')
                 print(f"Processing {custom_type}")
-                
+
                 locale_content.setdefault(locale, {})
+                if locale not in menu:
+                    menu[locale] = []
 
                 if custom_type == "form_questions":
                     content_item = {
@@ -32,13 +35,12 @@ class StrapiAPI:
                         "pageTitle": item.get("page_title"),
                         "lastUpdated": item.get("updatedAt"),
                         "previewTitle": item.get("preview_title"),
-                            "formQuestions": [], 
-                            "additionalText": [] 
+                        "formQuestions": [],
+                        "additionalText": []
                     }
 
                     for component in item.get("dynamic_zone", []):
-                        
-                        if component.get("QuestionType"):  
+                        if component.get("QuestionType"):
                             component_data = {
                                 "key": component.get("Key"),
                                 "label": component.get("Label"),
@@ -62,6 +64,26 @@ class StrapiAPI:
 
                     locale_content[locale][item.get("page_id")] = content_item
 
+                elif custom_type == "menu_content":
+                    menu_item = {
+                        "data": [],
+                    }
+
+                    for component in item.get("dynamic_zone", []):
+                        if component.get("__component") == "okolabor.menu-content":
+                            menu_component = {
+                                "url": component.get("Url"),
+                                "icon": component.get("Icon"),
+                                "label": component.get("Label(Translate)"),
+                                "order": component.get("Order"),
+                                "title": component.get("Title"),
+                                "enabled": component.get("Enabled"),
+                                
+                            }
+                            menu_item["data"].append(menu_component)
+
+                    menu[locale].append(menu_item)
+
             for item in content:
                 formatted_data.append({
                     "id": item.get("id"),
@@ -72,7 +94,8 @@ class StrapiAPI:
                     "createdBy": item.get("createdBy"),
                     "updatedBy": item.get("updatedBy"),
                     "deletedBy": item.get("deletedBy"),
-                    "content": locale_content
+                    "content": locale_content,
+                    "menu": menu
                 })
 
             self.save_to_database(formatted_data)
